@@ -1,17 +1,34 @@
 'use strict';
 
-var ClickHandler = require(process.cwd() + '/app/controllers/clickHandler.server.js');
 
-module.exports = function (app, db) {
-   var clickHandler = new ClickHandler(db);
 
-   app.route('/')
+module.exports = function (app) {
+    app.route('/')
       .get(function (req, res) {
          res.sendFile(process.cwd() + '/public/index.html');
       });
 
-   app.route('/api/clicks')
-      .get(clickHandler.getClicks)
-      .post(clickHandler.addClick)
-      .delete(clickHandler.resetClicks);
+      app.get('/:time', function (req, res) {
+      	var timeResponse = {};
+      	var theTime = new Date(req.params.time);
+      	if(isNaN(theTime.getTime())){
+      	var timeInt = parseInt(req.params.time);
+      	theTime = new Date(timeInt * 1000);
+      }
+      if(isNaN(theTime.getTime())){
+      	timeResponse.unix = null;
+      	timeResponse.natural = null;
+      }  
+      else {
+      	timeResponse.unix = theTime.getTime().toString();
+      	timeResponse.natural = theTime.toDateString();
+      	}
+
+      	
+      	res.send(JSON.stringify(timeResponse));
+  		//res.send(req.params);
+		})
+
+
+
 };

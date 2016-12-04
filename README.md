@@ -1,3 +1,11 @@
+#Eric's Time Service read me:
+
+Built from clementine.js boilerplate using node, express, and moment.
+
+For Free Code Camp timeservice project.
+
+Kinda works.
+
 # Clementine.js Boilerplate
 
 [![Join the chat at https://gitter.im/johnstonbl01/clementinejs](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/johnstonbl01/clementinejs?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)

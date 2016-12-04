@@ -1,6 +1,6 @@
 'use strict';
 
-
+var moment = require('moment');
 
 module.exports = function (app) {
     app.route('/')
@@ -8,27 +8,26 @@ module.exports = function (app) {
          res.sendFile(process.cwd() + '/public/index.html');
       });
 
-      app.get('/:time', function (req, res) {
-      	var timeResponse = {};
-      	var theTime = new Date(req.params.time);
-      	if(isNaN(theTime.getTime())){
-      	var timeInt = parseInt(req.params.time);
-      	theTime = new Date(timeInt * 1000);
-      }
-      if(isNaN(theTime.getTime())){
-      	timeResponse.unix = null;
-      	timeResponse.natural = null;
-      }  
-      else {
-      	timeResponse.unix = theTime.getTime().toString();
-      	timeResponse.natural = theTime.toDateString();
-      	}
+      //Handle time requests as Unix timestamps or natural formatting.
+      app.get('/:timeString', function (req, res) {
+      	var timeResponse = {}; //object to hold data to respond to request
+         var theTime = moment(req.params.timeString); //hey maybe it will work!
 
-      	
-      	res.send(JSON.stringify(timeResponse));
-  		//res.send(req.params);
+         //Check to see if timeString was a unix number, meaning creating the moment failed.
+         if(!isNaN(parseInt(req.params.timeString))) {
+            theTime = moment.unix(parseInt(req.params.timeString));
+         }
+
+         timeResponse["unix"] = theTime.format("X"); //Unix formatting
+         timeResponse.natural = theTime.format("dddd, MMMM Do YYYY"); //Pleasant natural formatting
+
+         //Check to see if all of that failed, and if so, set response object values to null
+         if(isNaN(timeResponse.unix)){
+            timeResponse.unix = null;
+            timeResponse.natural = null;
+         }
+         res.json(timeResponse);
 		})
-
 
 
 };

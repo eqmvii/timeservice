@@ -3,26 +3,31 @@
     <head>
         <title>Eric's timestamp microservice</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    </head>
+        </head>
     <body>
         <div class="container">
             <h1 class="header">
                 Eric's Timestamp microservice
             </h1>
             <blockquote>
-                User stories:
+                Required user stories:
                 <ul>1) I can pass a string as a parameter, and it will check to see whether that string 
                 contains either a unix timestamp or a natural language date (example: January 1, 2016)</ul>
                 <ul>2) If it does, it returns both the Unix timestamp and the natural language form of that date.</ul>
                 <ul>3) If it does not contain a date or Unix timestamp, it returns null for those properties.</ul>
             </blockquote>
             <h3>Example usage:</h3>
-            <code>http://localhost:3000/December%2015,%202015</code><br>
-            <code>http://localhost:3000/1450137600</code>
+            <p>After this web address, type a Unix timestamp or a natural language date. For example, try these links:</p>
+            <ul>
+            <li><a href="/December%2015,%202015">/December 15, 2015</a> (valid date)</li> 
+            <li><a href="/1480807900">/1480807900</a> (valid Unix timestamp)</li>
+            <li><a href="December%2032,%202012">/December 32, 2012</a> (invalid date)</li>
+            <li><a href="hamburger">/hamburger</a> (invalid date)</li>
+            </ul>
             <h3>Example output:</h3>
-            <code>
-{"unix":"1450155600000","natural":"Tue Dec 15 2015"}
-            </code>
+            <p>Your browser should display the resulting JSON, so if you typed in /1450155600 you would see something like this:</p>
+            <br />
+            <code>{"unix":"1450155600","natural":"Tuesday, December 15th 2015"}</code>
         </div>
     </body>
 </html>  

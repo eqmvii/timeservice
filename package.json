@@ -1,27 +1,9 @@
 {
-  "name": "clementinejs",
-  "version": "1.0.2",
-  "description": "A light-weight MEAN stack boilerplate.",
+  "name": "timeservice",
+  "version": "1.0.0",
+  "description": "FCC timeservice project",
   "main": "server.js",
-  "scripts": {
-    "start": "gulp"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/johnstonbl01/clementinejs"
-  },
-  "homepage": "http://johnstonbl01.github.io/clementinejs/",
-  "bugs": "https://github.com/johnstonbl01/clementinejs/issues",
-  "keywords": [
-    "MEAN",
-    "MongoDB",
-    "Express",
-    "Angular",
-    "Node",
-    "javascript",
-    "boilerplate"
-  ],
-  "author": "Blake Johnston",
+  "author": "Eric Martin",
   "license": "MIT",
   "dependencies": {
     "express": "^4.13.3",
